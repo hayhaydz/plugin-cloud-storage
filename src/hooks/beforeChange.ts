@@ -16,9 +16,10 @@ export const getBeforeChangeHook =
       const files = getIncomingFiles({ req, data })
 
       const promises = files.map(async file => {
-        await adapter.handleUpload({ collection, data, req, file })
+        return await adapter.handleUpload({ collection, data, req, file })
       })
 
+      console.log(data);
       await Promise.all(promises)
     } catch (err: unknown) {
       req.payload.logger.error(

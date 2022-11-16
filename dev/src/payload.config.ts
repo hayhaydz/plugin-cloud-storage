@@ -5,6 +5,7 @@ import { cloudStorage } from '../../src'
 import { s3Adapter } from '../../src/adapters/s3'
 import { gcsAdapter } from '../../src/adapters/gcs'
 import { azureBlobStorageAdapter } from '../../src/adapters/azure'
+import { imagekitAdapter } from '../../src/adapters/imagekit'
 import type { Adapter } from '../../src/types'
 import { Media } from './collections/Media'
 
@@ -44,6 +45,16 @@ if (process.env.PAYLOAD_PUBLIC_CLOUD_STORAGE_ADAPTER === 'gcs') {
   })
 }
 
+if (process.env.PAYLOAD_PUBLIC_CLOUD_STORAGE_ADAPTER === 'imagekit') {
+  adapter = imagekitAdapter({
+    options: {
+      urlEndpoint: process.env.IMAGEKIT_ENDPOINT,
+      publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+      privateKey: process.env.IMAGEKIT_PRIVATE_KEY
+    },
+  })
+}
+
 export default buildConfig({
   serverURL: 'http://localhost:3000',
   collections: [Media, Users],
@@ -62,6 +73,7 @@ export default buildConfig({
             '@azure/storage-blob': path.resolve(__dirname, '../../src/adapters/azure/mock.js'),
             '@aws-sdk/client-s3': path.resolve(__dirname, '../../src/adapters/s3/mock.js'),
             '@google-cloud/storage': path.resolve(__dirname, '../../src/adapters/gcs/mock.js'),
+            'imagekit': path.resolve(__dirname, '../../src/adapters/gcs/mock.js')
           },
         },
       }

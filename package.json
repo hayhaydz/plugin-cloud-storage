@@ -15,6 +15,7 @@
     "@aws-sdk/client-s3": "^3.142.0",
     "@azure/storage-blob": "^12.11.0",
     "@google-cloud/storage": "^6.4.1",
+    "imagekit": "^4.1.1",
     "payload": "^1.0.27"
   },
   "peerDependenciesMeta": {
@@ -25,6 +26,9 @@
       "optional": true
     },
     "@google-cloud/storage": {
+      "optional": true
+    },
+    "imagekit": {
       "optional": true
     }
   },
@@ -48,6 +52,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
+    "imagekit": "^4.1.1",
     "nodemon": "^2.0.6",
     "payload": "^1.1.3",
     "prettier": "^2.7.1",
